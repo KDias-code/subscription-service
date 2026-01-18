@@ -6,6 +6,8 @@
 ```bash
 docker-compose up -d
 
+swag init --generalInfo internal/handlers/subscruptionsHandlers.go --output docs
+
 📁 Структура проекта
 
 internal/handlers — HTTP-хендлеры (CRUD + подсчет суммы подписок)
