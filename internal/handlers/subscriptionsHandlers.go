@@ -30,8 +30,8 @@ func NewSubscriptionsHandler(app *fiber.App, logger hclog.Logger, service servic
 	return &SubscriptionsHandler{app: app, logger: logger, service: service}
 }
 
-// FindByID returns a subscription by its ID
-// @Summary Get subscription by ID
+// FindByID Поиск подписки по ID
+// @Summary Поиск подписки по ID
 // @Tags subscriptions
 // @Accept json
 // @Produce json
@@ -66,8 +66,8 @@ func (h SubscriptionsHandler) FindByID(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(*sub)
 }
 
-// Create a subscription
-// @Summary Create a new subscription
+// Create Создание подписки
+// @Summary Create Создание подписки
 // @Tags subscriptions
 // @Accept json
 // @Produce json
@@ -92,8 +92,8 @@ func (h SubscriptionsHandler) Create(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"success": true})
 }
 
-// Update an existing subscription
-// @Summary Update a subscription
+// Update Обновление данных подписок
+// @Summary Update Обновление данных подписок
 // @Tags subscriptions
 // @Accept json
 // @Produce json
@@ -121,8 +121,8 @@ func (h SubscriptionsHandler) Update(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"success": true})
 }
 
-// Delete a subscription by ID
-// @Summary Delete a subscription
+// Delete Удаление записей подписок по ID
+// @Summary Delete Удаление подписок
 // @Tags subscriptions
 // @Accept json
 // @Produce json
@@ -151,8 +151,8 @@ func (h SubscriptionsHandler) Delete(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"success": true})
 }
 
-// SubscriptionsSum total subscription amount for a period
-// @Summary Sum subscriptions
+// SubscriptionsSum Сумма подписок в зависимости от филтров
+// @Summary Высчет суммы подписок
 // @Tags subscriptions
 // @Accept json
 // @Produce json
