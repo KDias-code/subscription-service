@@ -1,0 +1,189 @@
+definitions:
+  cerrors.AppError:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+  model.Subscriptions:
+    properties:
+      endDate:
+        type: string
+      id:
+        type: string
+      price:
+        type: integer
+      serviceName:
+        type: string
+      startDate:
+        type: string
+      updatedAt:
+        type: string
+      userID:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/subscriptions:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Subscription payload
+        in: body
+        name: subscription
+        required: true
+        schema:
+          $ref: '#/definitions/model.Subscriptions'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+      summary: Create a new subscription
+      tags:
+      - subscriptions
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Subscription payload
+        in: body
+        name: subscription
+        required: true
+        schema:
+          $ref: '#/definitions/model.Subscriptions'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+      summary: Update a subscription
+      tags:
+      - subscriptions
+  /v1/subscriptions/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Subscription ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+      summary: Delete a subscription
+      tags:
+      - subscriptions
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Subscription ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Subscriptions'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+      summary: Get subscription by ID
+      tags:
+      - subscriptions
+  /v1/subscriptions/sum:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Start date (YYYY-MM-DD)
+        in: query
+        name: startDate
+        required: true
+        type: string
+      - description: End date (YYYY-MM-DD)
+        in: query
+        name: endDate
+        required: true
+        type: string
+      - description: User UUID
+        in: query
+        name: userID
+        type: string
+      - description: Service name
+        in: query
+        name: serviceName
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: sum amount
+          schema:
+            additionalProperties:
+              format: int64
+              type: integer
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/cerrors.AppError'
+      summary: Sum subscriptions
+      tags:
+      - subscriptions
+swagger: "2.0"

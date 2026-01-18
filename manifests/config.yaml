@@ -1,0 +1,11 @@
+http:
+  port: 8080
+  readTimeout: 5s
+  writeTimeout: 10s
+
+log:
+  level: 2
+  json: true
+
+postgres:
+  dsn: "postgres://postgres:postgres@subscriptions-postgres:5432/subscriptions_db?sslmode=disable"
